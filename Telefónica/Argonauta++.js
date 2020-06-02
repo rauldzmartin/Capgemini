@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Argonauta++
 // @namespace    http://itsmte/
-// @version      0.1
+// @version      0.2
 // @description  BMC Remedy Customization
 // @author       Raúl Díez Martín
 // @match        https://itsmte.tor.telefonica.es/*
