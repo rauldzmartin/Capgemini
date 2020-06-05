@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Argonauta++
 // @namespace    https://itsmte.tor.telefonica.es
-// @version      0.2
+// @version      0.3
 // @description  RemedyUI modification
 // @author       Raúl Díez Martín (raul.diez-martin@capgemini.com)
 // @match        https://itsmte.tor.telefonica.es/*
