@@ -189,7 +189,7 @@ function getEstado() {
 ////////////////////////////
 
 // Ocultar barra superior inútil
-// document.querySelector("#WIN_0_303635200").style.display = 'none'; // --> OK
+document.querySelector("#WIN_0_303635200").style.display = 'none'; // --> OK
 
 function waitForKeyElements (
 selectorTxt,     /* Required: The jQuery selector string that
