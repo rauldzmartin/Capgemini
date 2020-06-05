@@ -1,15 +1,12 @@
 // ==UserScript==
 // @name         Argonauta++
-// @namespace    https://itsmte.tor.telefonica.es
-// @version      0.3
-// @description  RemedyUI modification
-// @author       Raúl Díez Martín (raul.diez-martin@capgemini.com)
+// @description  Remedy UI modification
+// @copyright    2020, Raúl Díez Martín Year, (raul.diez-martin@capgemini.com)
+// @license      MIT
+// @icon         https://itsmte.tor.telefonica.es/arsys/resources/images/favicon.ico
 // @match        https://itsmte.tor.telefonica.es/arsys/forms/onbmc-s/SHR%3ALandingConsole/Default+Administrator+View/*
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js
-// @require      https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js
-// @run-at       document-end
-// @grant        GM_addStyle
-// @noframes
+// @version 0.0.3
+// @updateURL https://openuserjs.org/meta/rauldzmartin/My_Script.meta.js
 // ==/UserScript==
 
 // Initial variables declaration
