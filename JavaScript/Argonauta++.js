@@ -4,7 +4,7 @@
 // @version      0.3
 // @description  RemedyUI modification
 // @author       Raúl Díez Martín (raul.diez-martin@capgemini.com)
-// @match        https://itsmte.tor.telefonica.es/*
+// @match        https://itsmte.tor.telefonica.es/arsys/forms/onbmc-s/SHR%3ALandingConsole/Default+Administrator+View/*
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js
 // @require      https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js
 // @run-at       document-end
