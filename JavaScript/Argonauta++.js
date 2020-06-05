@@ -65,7 +65,7 @@ myButton.onclick = function(){
         if (!self.data('add')) {
             self.data('add', true);
             self.text('INC copiada ✔️');
-//             self.style.backgroundColor = "#9de398"; # ToDo -> Cambiar color con OK
+            // self.style.backgroundColor = "#9de398"; # ToDo -> Cambiar color con OK
 
             // Place myRegister in the clipboard
             var dummy = $('<input>').val(myRegistro).appendTo('body').select()
@@ -121,10 +121,10 @@ function getResumen() {
 }
 
 function getGrupoAsignado() {
-    var checkMyGrupoAsignado = document.querySelector("#T1020 > tbody > tr.SelPrimary > td:nth-child(9) > nobr > span") !== null;
+    var checkMyGrupoAsignado = document.querySelector("#arid_WIN_6_1000000217") !== null;
     if (checkMyGrupoAsignado){
         // Vista "Buscar"
-        myGrupoAsignado = document.querySelector("#T1020 > tbody > tr.SelPrimary > td:nth-child(9) > nobr > span").innerText;
+        myGrupoAsignado = document.querySelector("#arid_WIN_6_1000000217").title;
         console.log ("Grupo Asignado: " + myGrupoAsignado);
     } else {
         // Vista "Incidencia"
@@ -189,7 +189,7 @@ function getEstado() {
 ////////////////////////////
 
 // Ocultar barra superior inútil
-document.querySelector("#WIN_0_303635200").style.display = 'none'; // --> OK
+// document.querySelector("#WIN_0_303635200").style.display = 'none'; // --> OK
 
 function waitForKeyElements (
 selectorTxt,     /* Required: The jQuery selector string that
@@ -331,16 +331,16 @@ function setStyle (jNode) {
 GM_addStyle("                                       \
 /*hide annoying summary tooltip*/                   \
 #artooltip{                                         \
-visibility: hidden !important                     \
+visibility: hidden !important                       \
 }                                                   \
 /*highlight on mouse hover*/                        \
 #T301444200 > tbody > tr:nth-child(n+1):hover td,   \
 #T302087200 > tbody > tr:nth-child(n+1):hover td,   \
 #T1020 > tbody > tr:nth-child(n+1):hover td{        \
-background-color: #c7c7c7 !important;             \
+background-color: #c7c7c7 !important;               \
 }                                                   \
-/*Increase text size in Notes window*/  \
-#editor{                                \
-font-size: 11px;                      \
-}                                       \
+/*Increase text size in Notes window*/              \
+#editor{                                            \
+font-size: 11px;                                    \
+}                                                   \
 ");
