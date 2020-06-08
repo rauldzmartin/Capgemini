@@ -118,10 +118,11 @@ function getResumen() {
 }
 
 function getGrupoAsignado() {
-    var checkMyGrupoAsignado = document.querySelector("#arid_WIN_6_1000000217") !== null;
+//     var checkMyGrupoAsignado = document.querySelector("#arid_WIN_8_1000000217") !== null;
+    var checkMyGrupoAsignado = document.querySelector("[class=' pnl '][id^='arid_WIN_'][id$='_1000000217']") !== null;
     if (checkMyGrupoAsignado){
         // Vista "Buscar"
-        myGrupoAsignado = document.querySelector("#arid_WIN_6_1000000217").title;
+        myGrupoAsignado = document.querySelector("[id^='arid_WIN_'][id$='_1000000217']").value;
         console.log ("Grupo Asignado: " + myGrupoAsignado);
     } else {
         // Vista "Incidencia"
