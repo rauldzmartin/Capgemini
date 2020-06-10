@@ -103,38 +103,54 @@ function getLoggedUser(){
 }
 
 function getINC() {
-    myINC = $("#T304261000").text();
-    myINC = myINC.substring(9,24);
+    myINC = $("[id*='1000000161']").last().val();
     if (myINC) {
         console.log ("Incidencia: " + myINC);
     }
+
+    // myINC = $("#T304261000").text();
+    // myINC = myINC.substring(9,24);
+    // if (myINC) {
+    //     console.log ("Incidencia: " + myINC);
+    // }
 }
 
 function getResumen() {
-    myResumen = document.querySelector("#T304261000 > tbody > tr.SelPrimary > td:nth-child(2) > nobr > span").textContent;
+    myResumen = $("[id*='1000000000']").last().val();
     if (myResumen) {
         console.log ("Resumen: " + myResumen);
     }
+
+    // myResumen = document.querySelector("#T304261000 > tbody > tr.SelPrimary > td:nth-child(2) > nobr > span").textContent;
+    // if (myResumen) {
+    //     console.log ("Resumen: " + myResumen);
+    // }
 }
 
 function getGrupoAsignado() {
-    var checkMyGrupoAsignado = document.querySelector("#arid_WIN_6_1000000217") !== null;
-    if (checkMyGrupoAsignado){
-        // Vista "Buscar"
-        myGrupoAsignado = document.querySelector("#arid_WIN_6_1000000217").title;
-        console.log ("Grupo Asignado: " + myGrupoAsignado);
-    } else {
-        // Vista "Incidencia"
-        checkMyGrupoAsignado = document.querySelector("#arid_WIN_3_1000000217") !== null;
-        if (checkMyGrupoAsignado) {
-            myGrupoAsignado = document.querySelector("#arid_WIN_3_1000000217").value;
-            console.log ("Grupo Asignado: " + myGrupoAsignado);
-        } else {
-            // Vista "Incidencia en nueva pestaña"
-            myGrupoAsignado = document.querySelector("#arid_WIN_1_1000000217").value;
-            console.log ("Grupo Asignado: " + myGrupoAsignado);
-        }
-    }
+
+    myGrupoAsignado= $("[id*='1000000217']").last().val();
+    console.log ("Grupo Asignado: " + myGrupoAsignado);
+
+
+    // var checkMyGrupoAsignado = document.querySelector("#arid_WIN_4_1000000217") !== null;
+    // if (checkMyGrupoAsignado){
+    //     // Vista "Buscar"
+        
+    //     myGrupoAsignado = document.querySelector("#arid_WIN_4_1000000217").title;
+    //     console.log ("Grupo Asignado: " + myGrupoAsignado);
+    // } else {
+    //     // Vista "Incidencia"
+    //     checkMyGrupoAsignado = document.querySelector("#arid_WIN_3_1000000217") !== null;
+    //     if (checkMyGrupoAsignado) {
+    //         myGrupoAsignado = document.querySelector("#arid_WIN_3_1000000217").value;
+    //         console.log ("Grupo Asignado: " + myGrupoAsignado);
+    //     } else {
+    //         // Vista "Incidencia en nueva pestaña"
+    //         myGrupoAsignado = document.querySelector("#arid_WIN_1_1000000217").value;
+    //         console.log ("Grupo Asignado: " + myGrupoAsignado);
+    //     }
+    // }
 }
 
 function getUsuarioAsignado() {
