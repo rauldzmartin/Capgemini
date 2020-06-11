@@ -23,56 +23,50 @@ var myCurrentView = "";
 // Elementos visuales
 var myButton = document.createElement("Button");
 
-// Incident registration button
+// Botón para copiar los detalles de la incidencia actual
 myButton.innerHTML = "Copiar INC 📋";
-myButton.style = style="font-size: 15px; bottom: 15px; left: 15px; position: fixed; z-index: 99999; padding: 5px; background-color: rgb(239, 239, 239);";
+myButton.style = "font-size: 15px; bottom: 15px; left: 15px; position: fixed; z-index: 99999; padding: 5px; background-color: rgb(239, 239, 239)";
 document.body.appendChild(myButton);
 
-// Button funcionality
+// Funcionalidad del botón
 myButton.onclick = function(){
 
-// Examina la vista actual
-getCurrentView();
-if (myCurrentView == "Página de Inicio de TI"){
-    alert("No estás visualizando ninguna incidencia");
-} else {
-    // Get logged  user name
-    cleanMyVariables();
-    // Get current INC type of view
-    getLoggedUser();
-    // Get INC number (ID de la incidencia*+)
-    getINC();
-    // Get ticket title (Resumen*)
-    getResumen();
-    // Get assigned group (Grupo asignado*+)
-    getGrupoAsignado();
-    // Get assigned user (Usuario asignado+)
-    getUsuarioAsignado();
-    // Get status (Estado*)
-    getEstado();
+	// Examina la vista actual
+	getCurrentView();
+	if (myCurrentView == "Página de Inicio de TI"){
+	    alert("No estás visualizando ninguna incidencia");
+	} else {
+		// Se seleccionan los valores de los campos
+	    cleanMyVariables();
+	    getLoggedUser();
+	    getINC();
+	    getResumen();
+	    getGrupoAsignado();
+	    getUsuarioAsignado();
+	    getEstado();
 
-    // Se construye el registro a copiar
-    var myRegistro = [myUser, myDateStr, myINC, myResumen, myGrupoAsignado, myEstado, myComentario];
-    console.log (myRegistro);
+	    // Se construye el registro a copiar
+	    var myRegistro = [myUser, myDateStr, myINC, myResumen, myGrupoAsignado, myEstado, myComentario];
+	    console.log (myRegistro);
 
-    // Se aplica el estilo "Copiado" al botón
-    var self = $(this);
-    if (!self.data('add')) {
-        self.data('add', true);
-        self.text('INC copiada ✔️');
-        self.css('background-color','#b8ffcb'); // Verde claro
+	    // Se aplica el estilo "Copiado" al botón
+	    var self = $(this);
+	    if (!self.data('add')) {
+	        self.data('add', true);
+	        self.text('INC copiada ✔️');
+	        self.css('background-color','#b8ffcb'); // Verde claro
 
-        // Place myRegister in the clipboard
-        var dummy = $('<input>').val(myRegistro).appendTo('body').select()
-        document.execCommand('copy')
+	        // Se coloca el registro en el portapapeles
+	        var dummy = $('<input>').val(myRegistro).appendTo('body').select()
+	        document.execCommand('copy')
 
-        // Set button to "ready to copy" status
-        setTimeout(function() {
-            self.text('Copiar INC 📋').data('add', false);
-            self.css('background-color','#efefef'); // Gris estándar
-        }, 3000);
-    }
-}
+	        // Se aplica el estilo "Listo para copiar" al botón
+	        setTimeout(function() {
+	            self.text('Copiar INC 📋').data('add', false);
+	            self.css('background-color','#efefef'); // Gris estándar
+	        }, 3000);
+	    }
+	}
 };
 
 ////////////////////////////
