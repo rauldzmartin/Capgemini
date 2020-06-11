@@ -4,6 +4,8 @@
 // @copyright   2020, Raúl Díez Martín Year, (raul.diez-martin@capgemini.com)
 // @icon        https://itsmte.tor.telefonica.es/arsys/resources/images/favicon.ico
 // @match       https://itsmte.tor.telefonica.es/arsys/forms/onbmc-s/SHR%3ALandingConsole/Default+Administrator+View/*
+// @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js
+// @require     http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js
 // @version     0.1.1
 // ==/UserScript==
 
