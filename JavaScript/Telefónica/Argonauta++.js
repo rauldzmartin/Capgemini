@@ -4,7 +4,7 @@
 // @copyright   2020, Raúl Díez Martín Year, (raul.diez-martin@capgemini.com)
 // @icon        https://itsmte.tor.telefonica.es/arsys/resources/images/favicon.ico
 // @match       https://itsmte.tor.telefonica.es/arsys/forms/onbmc-s/SHR%3ALandingConsole/Default+Administrator+View/*
-// @version     0.1
+// @version     0.1.1
 // ==/UserScript==
 
 // Declaración de variables
