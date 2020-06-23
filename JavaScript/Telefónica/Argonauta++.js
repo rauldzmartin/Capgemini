@@ -6,7 +6,8 @@
 // @match       https://itsmte.tor.telefonica.es/arsys/forms/onbmc-s/SHR%3ALandingConsole/Default+Administrator+View/*
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js
 // @require     http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js
-// @version     0.1.1
+// @grant       GM_addStyle
+// @version     0.1.2
 // ==/UserScript==
 
 // Declaración de variables
@@ -31,7 +32,22 @@ myButton.style = "font-size: 15px; bottom: 15px; left: 15px; position: fixed; z-
 document.body.appendChild(myButton);
 
 // Funcionalidad del botón
-myButton.onclick = function(){
+myButton.onclick = copyINC;
+
+// Se detecta cuándo se guarda el ticket mediante "CTRL + ALT + ENTER"
+// para copiar los detalles del ticket al portapapeles
+document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.altKey && event.key === 'Enter') {
+        console.log('Detectada combinación de teclas para "Guardar". Se copian los datos al portapapeles.');
+        copyINC();
+    }
+});
+
+////////////////////////////
+///       FUNCIONES      ///
+////////////////////////////
+
+function copyINC(){
 
 	// Examina la vista actual
 	getCurrentView();
@@ -70,10 +86,6 @@ myButton.onclick = function(){
 	    }
 	}
 };
-
-////////////////////////////
-///       FUNCIONES      ///
-////////////////////////////
 
 function cleanMyVariables(){
     myUser            = undefined;
@@ -274,8 +286,19 @@ function getEstado() {
 //     });
 // }
 
+GM_addStyle("                                       \
+/*Oculta el tooltip molesto e inútil*/              \
+#artooltip{                                         \
+visibility: hidden !important                       \
+}                                                   \
+/*Increase text size in Notes window*/              \
+#editor{                                            \
+font-size: 11px;                                    \
+}                                                   \
+");
+
 // GM_addStyle("                                       \
-// /*hide annoying summary tooltip*/                   \
+// // Oculta el tooltip molesto e inútil               \
 // #artooltip{                                         \
 // visibility: hidden !important                       \
 // }                                                   \
