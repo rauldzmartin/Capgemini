@@ -102,7 +102,8 @@ function getINC() {
 }
 
 function getResumen() {
-    myResumen = $("[id*='1000000000']").last().val();
+	myResumen = $("[id*='1000000000']").last().val();
+	myResumen = myResumen.replace(",", ";");
     console.log ("Resumen: " + myResumen);
 }
 
