@@ -144,19 +144,18 @@ function getEstado() {
 
 function waitForKeyElements (
 selectorTxt,     /* Required: The jQuery selector string that
-								specifies the desired element(s). */
+						      specifies the desired element(s). */
 
- actionFunction, /* Required: The code to run when elements are
-								found. It is passed a jNode to the matched
-								element. */
+actionFunction, /* Required: The code to run when elements are
+							 found. It is passed a jNode to the matched
+						     element. */
 
  bWaitOnce,      /* Optional: If false, will continue to scan for
-								new elements even after the first match is
-								found. */
+							  new elements even after the first match is
+						      found. */
 
  iframeSelector  /* Optional: If set, identifies the iframe to
-								search. */
-
+							  search. */
 ) {
     var targetNodes, btargetsFound;
 
@@ -223,7 +222,7 @@ selectorTxt,     /* Required: The jQuery selector string that
 ////////////////////////////
 
 // Ocultar barra superior inútil
-document.querySelector("#WIN_0_303635200").style.display = 'none';
+// document.querySelector("#WIN_0_303635200").style.display = 'none';
 
 // Se espera a que Argonauta cargue completamente
 var usrText="";
