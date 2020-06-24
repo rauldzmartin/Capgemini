@@ -31,7 +31,7 @@ myButton.innerHTML = "Copiar INC 📋";
 myButton.style = "font-size: 15px; bottom: 15px; left: 15px; position: fixed; z-index: 99999; padding: 5px; background-color: rgb(239, 239, 239)";
 document.body.appendChild(myButton);
 
-// Funcionalidad del botón
+// Se da funcionalidad al pulsar el botón
 myButton.onclick = copyINC;
 
 // Se detecta cuándo se guarda el ticket mediante "CTRL + ALT + ENTER"
@@ -49,42 +49,42 @@ document.addEventListener('keydown', function(event) {
 
 function copyINC(){
 
-	// Examina la vista actual
-	getCurrentView();
-	if (myCurrentView == "Página de Inicio de TI"){
-	    alert("No estás visualizando ninguna incidencia");
-	} else {
-		// Se seleccionan los valores de los campos
-	    cleanMyVariables();
-	    getLoggedUser();
-	    getINC();
-	    getResumen();
-	    getGrupoAsignado();
-	    getUsuarioAsignado();
-	    getEstado();
+    // Examina la vista actual
+    getCurrentView();
+    if (myCurrentView == "Página de Inicio de TI"){
+        alert("No estás visualizando ninguna incidencia");
+    } else {
+        // Se seleccionan los valores de los campos
+        cleanMyVariables();
+        getLoggedUser();
+        getINC();
+        getResumen();
+        getGrupoAsignado();
+        getUsuarioAsignado();
+        getEstado();
 
-	    // Se construye el registro a copiar
-	    var myRegistro = [myUser, myDateStr, myINC, myResumen, myGrupoAsignado, myEstado, myComentario];
-	    console.log (myRegistro);
+        // Se construye el registro a copiar
+        var myRegistro = [myUser, myDateStr, myINC, myResumen, myGrupoAsignado, myEstado, myComentario];
+        console.log (myRegistro);
 
-	    // Se aplica el estilo "Copiado" al botón
-	    var self = $(this);
-	    if (!self.data('add')) {
-	        self.data('add', true);
-	        self.text('INC copiada ✔️');
-	        self.css('background-color','#b8ffcb'); // Verde claro
+        // Se aplica el estilo "Copiado" al botón
+        var self = $(this);
+        if (!self.data('add')) {
+            self.data('add', true);
+            self.text('INC copiada ✔️');
+            self.css('background-color','#b8ffcb'); // Verde claro
 
-	        // Se coloca el registro en el portapapeles
-	        var dummy = $('<input>').val(myRegistro).appendTo('body').select()
-	        document.execCommand('copy')
+            // Se coloca el registro en el portapapeles
+            var dummy = $('<input>').val(myRegistro).appendTo('body').select()
+            document.execCommand('copy')
 
-	        // Se aplica el estilo "Listo para copiar" al botón
-	        setTimeout(function() {
-	            self.text('Copiar INC 📋').data('add', false);
-	            self.css('background-color','#efefef'); // Gris estándar
-	        }, 3000);
-	    }
-	}
+            // Se aplica el estilo "Listo para copiar" al botón
+            setTimeout(function() {
+                self.text('Copiar INC 📋').data('add', false);
+                self.css('background-color','#efefef'); // Gris estándar
+            }, 3000);
+        }
+    }
 };
 
 function cleanMyVariables(){
@@ -114,8 +114,8 @@ function getINC() {
 }
 
 function getResumen() {
-	myResumen = $("[id*='1000000000']").last().val();
-	myResumen = myResumen.replace(",", ";");
+    myResumen = $("[id*='1000000000']").last().val();
+    myResumen = myResumen.replace(",", ";");
     console.log ("Resumen: " + myResumen);
 }
 
@@ -142,106 +142,104 @@ function getEstado() {
     console.log ("Estado: " + myEstado);
 }
 
+function waitForKeyElements (
+selectorTxt,     /* Required: The jQuery selector string that
+								specifies the desired element(s). */
+
+ actionFunction, /* Required: The code to run when elements are
+								found. It is passed a jNode to the matched
+								element. */
+
+ bWaitOnce,      /* Optional: If false, will continue to scan for
+								new elements even after the first match is
+								found. */
+
+ iframeSelector  /* Optional: If set, identifies the iframe to
+								search. */
+
+) {
+    var targetNodes, btargetsFound;
+
+    if (typeof iframeSelector == "undefined")
+        targetNodes     = $(selectorTxt);
+    else
+        targetNodes     = $(iframeSelector).contents ()
+            .find (selectorTxt);
+
+    if (targetNodes  &&  targetNodes.length > 0) {
+        btargetsFound   = true;
+        /*--- Found target node(s).  Go through each and act if they
+					are new.
+				*/
+        targetNodes.each ( function () {
+            var jThis        = $(this);
+            var alreadyFound = jThis.data ('alreadyFound')  ||  false;
+
+            if (!alreadyFound) {
+                //--- Call the payload function.
+                var cancelFound     = actionFunction (jThis);
+                if (cancelFound)
+                    btargetsFound   = false;
+                else
+                    jThis.data ('alreadyFound', true);
+            }
+        } );
+    }
+    else {
+        btargetsFound   = false;
+    }
+
+    //--- Get the timer-control variable for this selector.
+    var controlObj      = waitForKeyElements.controlObj  ||  {};
+    var controlKey      = selectorTxt.replace (/[^\w]/g, "_");
+    var timeControl     = controlObj [controlKey];
+
+    //--- Now set or clear the timer as appropriate.
+    if (btargetsFound  &&  bWaitOnce  &&  timeControl) {
+        //--- The only condition where we need to clear the timer.
+        clearInterval (timeControl);
+        delete controlObj [controlKey]
+    }
+    else {
+        //--- Set a timer, if needed.
+        if ( ! timeControl) {
+            timeControl = setInterval ( function () {
+                waitForKeyElements (    selectorTxt,
+                                    actionFunction,
+                                    bWaitOnce,
+                                    iframeSelector
+                                   );
+            },
+                                       300
+                                      );
+            controlObj [controlKey] = timeControl;
+        }
+    }
+    waitForKeyElements.controlObj   = controlObj;
+}
+
 ////////////////////////////
 ///     CUSTOMIZACIÓN    ///
 ////////////////////////////
 
 // Ocultar barra superior inútil
-// document.querySelector("#WIN_0_303635200").style.display = 'none'; // --> OK
+document.querySelector("#WIN_0_303635200").style.display = 'none';
 
-// function waitForKeyElements (
-// selectorTxt,     /* Required: The jQuery selector string that
-//                             specifies the desired element(s). */
+// Se espera a que Argonauta cargue completamente
+var usrText="";
+waitForKeyElements("#label301354000", getUser);
 
-//  actionFunction, /* Required: The code to run when elements are
-//                             found. It is passed a jNode to the matched
-//                             element. */
-
-//  bWaitOnce,      /* Optional: If false, will continue to scan for
-//                             new elements even after the first match is
-//                             found. */
-
-//  iframeSelector  /* Optional: If set, identifies the iframe to
-//                             search. */
-
-// ) {
-//     var targetNodes, btargetsFound;
-
-//     if (typeof iframeSelector == "undefined")
-//         targetNodes     = $(selectorTxt);
-//     else
-//         targetNodes     = $(iframeSelector).contents ()
-//             .find (selectorTxt);
-
-//     if (targetNodes  &&  targetNodes.length > 0) {
-//         btargetsFound   = true;
-//         /*--- Found target node(s).  Go through each and act if they
-//                 are new.
-//             */
-//         targetNodes.each ( function () {
-//             var jThis        = $(this);
-//             var alreadyFound = jThis.data ('alreadyFound')  ||  false;
-
-//             if (!alreadyFound) {
-//                 //--- Call the payload function.
-//                 var cancelFound     = actionFunction (jThis);
-//                 if (cancelFound)
-//                     btargetsFound   = false;
-//                 else
-//                     jThis.data ('alreadyFound', true);
-//             }
-//         } );
-//     }
-//     else {
-//         btargetsFound   = false;
-//     }
-
-//     //--- Get the timer-control variable for this selector.
-//     var controlObj      = waitForKeyElements.controlObj  ||  {};
-//     var controlKey      = selectorTxt.replace (/[^\w]/g, "_");
-//     var timeControl     = controlObj [controlKey];
-
-//     //--- Now set or clear the timer as appropriate.
-//     if (btargetsFound  &&  bWaitOnce  &&  timeControl) {
-//         //--- The only condition where we need to clear the timer.
-//         clearInterval (timeControl);
-//         delete controlObj [controlKey]
-//     }
-//     else {
-//         //--- Set a timer, if needed.
-//         if ( ! timeControl) {
-//             timeControl = setInterval ( function () {
-//                 waitForKeyElements (    selectorTxt,
-//                                     actionFunction,
-//                                     bWaitOnce,
-//                                     iframeSelector
-//                                    );
-//             },
-//                                        300
-//                                       );
-//             controlObj [controlKey] = timeControl;
-//         }
-//     }
-//     waitForKeyElements.controlObj   = controlObj;
-// }
-
-// var usrText="";
-// //Get logged in users name
-// waitForKeyElements("#label301354000", getUser);
-
-// function getUser(jNode) {
-//     usrText = jNode.text ().trim ();
-//     if (usrText) {
-//         console.log ("User is " + usrText);
-//         //Process all rows
-//         waitForKeyElements("#T301444200 > tbody > tr", setStyle);  //overview console
-//         waitForKeyElements("#T302087200 > tbody > tr", setStyle);  //incident console
-//         waitForKeyElements("#T1020 > tbody > tr", setStyle);       //incident search
-//         document.title = "Argonauta++"
-//     }
-//     else
-//         return true;  //-- Keep waiting.
-// }
+function getUser(jNode) {
+    usrText = jNode.text ().trim ();
+    if (usrText) {
+        // waitForKeyElements("#T301444200 > tbody > tr", setStyle);  //overview console
+        // waitForKeyElements("#T302087200 > tbody > tr", setStyle);  //incident console
+        // waitForKeyElements("#T1020 > tbody > tr", setStyle);       //incident search
+        document.title = "Argonauta++"
+    }
+    else
+        return true;  // Sigue esperando.
+}
 
 // function setStyle (jNode) {
 //     var reLow = new RegExp(".*Baja.*"+usrText+".*", 'ig');
