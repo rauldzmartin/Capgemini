@@ -20,7 +20,7 @@ var myEstado = "";
 var myComentario = "";
 var myRegistro = "";
 var myDate = new Date();
-var myDateStr = myDate.toLocaleDateString();
+var myDateStr = myDate.toLocaleDateString('en-GB');
 var myCurrentView = "";
 
 // Elementos visuales
@@ -146,7 +146,7 @@ function waitForKeyElements (
 selectorTxt,     /* Required: The jQuery selector string that
 						      specifies the desired element(s). */
 
-actionFunction, /* Required: The code to run when elements are
+ actionFunction, /* Required: The code to run when elements are
 							 found. It is passed a jNode to the matched
 						     element. */
 
